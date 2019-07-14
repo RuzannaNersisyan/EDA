@@ -1,0 +1,249 @@
+#include <iostream>
+#include <type_traits>
+
+//template <typename T>
+class myList {
+public:
+
+	myList() {
+	head = nullptr;
+	tail = nullptr;
+	size = 0;
+        }
+	~myList();
+
+	void pushFront(int);
+	void pushBack(int);
+	void popFront();
+	void popBack();
+	void insert(int, int);
+	void removeAt(int);
+
+	T& operator [] (const int);
+
+	void printFromHead();
+	void printFromTail();
+
+	void clear();
+	int getSize() { return size; }
+
+private:
+
+	struct Node {
+		Node (int data = int(), Node *pNext = nullptr, Node *pPrev = nullptr) {
+			this->data = data;
+			this->pNext = pNext;
+			this->pPrev = pPrev;
+		}
+
+		int data;
+		Node *pNext;
+		Node *pPrev;
+	};
+
+	Node *head;
+	Node *tail;
+	int size;
+};
+
+//template <typename T>
+//myList<T>::myList() {
+//}
+
+//template <typename T>
+myList::~myList() {
+	clear();
+}
+
+//template<typename T>
+void myList::clear() {
+	if (getSize() % 2 == 0) {
+                for(int i = 0; i < getSize()/2; ++i) {
+                        popFront();
+                        popBack();
+                }
+	}else {
+                for(int i = 0; i < (getSize()-1)/2; ++i) {
+                        popFront();
+                        popBack();
+                }
+                popFront();
+        }
+}
+
+//template <typename T>
+void myList::pushFront(int data) {
+	if (size > 1) {
+		Node *temp = head;
+		head = new Node(data, head);
+		assert(head);
+		temp->pPrev = head;
+
+	}else if (size == 1) {
+		head = new Node(data, head);
+		assert(head);
+		tail->pPrev = this->head;
+
+	}else {
+		head = tail = new Node(data, head, tail);
+		assert(head);
+	}
+	size++;
+}
+
+//template <typename T>
+void myList::pushBack(int data) {
+	if (size > 1) {
+		Node *temp = tail;
+		tail = new Node(data, nullptr, tail);
+		assert(tail);
+		temp->pNext = tail;
+
+	}else if (size == 1) {
+		tail = new Node(data, nullptr, tail);
+		assert(tail);
+		head->pNext = this->tail;
+
+	}else {
+		head = tail = new Node(data, head, tail);
+		assert(head && tail);
+	}
+	size++;
+}
+
+//template <typename T>
+void myList::popFront() {
+	if (size > 1) {
+		Node *temp = head;
+		head = head->pNext;
+		delete temp;
+
+	}else if (size == 1) {
+		Node *temp = head;
+		tail = head = head->pNext;
+		delete temp;
+	}
+
+	size--;
+}
+
+//template <typename T>
+void myList::popBack() {
+	if (size > 1) {
+		Node *temp = tail;
+		tail = tail->pPrev;
+		delete temp;
+
+	}else if (size == 1) {
+		Node *temp = tail;
+		tail = head = tail->pPrev;
+		delete temp;
+	}
+
+	size--;
+}
+
+//template <typename T>
+void myList::insert(int data, int index) {
+	if (index == 0) {
+		 pushFront(data);
+
+	}else if (index == size || index > size) {
+		 pushBack(data);
+
+	}else if (index <= size / 2) {
+		Node *previous = this->head;
+		for (int i = 0; i < index - 1; i++) {
+			previous = previous->pNext;
+		}
+
+		Node *newNode = new Node(data, previous->pNext, previous);
+
+		previous->pNext = newNode;
+		Node *next = newNode->pNext;
+		next->pPrev = newNode;
+
+		size++;
+
+	}else if (index > size / 2) {
+		Node *next = this->tail;
+		for (int i = size - 1; index < i; i--) {
+			next = next->pPrev;
+		}
+
+		Node *newNode = new Node(data, next, next->pPrev);
+
+		next->pPrev = newNode;
+		Node *previous = newNode->pPrev;
+		previous->pNext = newNode;
+
+		size++;
+	}
+}
+
+//template <typename T>
+void myList::removeAt(int index) {
+	if (index == 0) {
+		 popFront();
+	}else if (index == size || index > size) {
+		 popBack();
+
+	}else if (index <= size / 2) {
+		Node *previous = this->head;
+		for (int i = 0; i < index - 1; i++) {
+			previous = previous->pNext;
+		}
+
+		Node *toDelete = previous->pNext;
+		previous->pNext = toDelete->pNext;
+		Node *next = toDelete->pNext;
+		delete toDelete;
+		next->pPrev = previous;
+
+		size--;
+
+	}else if (index > size / 2) {
+		Node *next = this->tail;
+		for (int i = size - 1; index < i; i--) {
+			next = next->pPrev;
+		}
+
+		Node *toDelete = next->pPrev;
+		next->pPrev = toDelete->pPrev;
+		Node *previous = toDelete->pPrev;
+		delete toDelete;
+		previous->pNext = next;
+
+		size--;
+	}
+}
+
+//template <typename T>
+T& myList::operator[] (const int index) {
+	if (index <= size / 2) {
+		int counter = 0;
+		Node *current = this->head;
+
+		while (current != nullptr) {
+			if (counter == index) {
+				 return current->data;
+			}
+			current = this->pNext;
+			counter++;
+		}
+
+	}else {
+		int counter = size - 1;
+		Node *current = this->tail;
+
+		while (current != nullptr) {
+			if (counter == index) {
+				return current->data;
+			}
+			current = this->pPrev;
+			counter--;
+		}
+	}
+}
+
+
