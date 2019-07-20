@@ -3,13 +3,11 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+!_TAG_PROGRAM_VERSION	5.8	//
 A	System.hpp	/^	std::vector<std::vector<double> > A;$/;"	m	class:System
 Initialize	System.cpp	/^void System::Initialize(unsigned num1)$/;"	f	class:System
 Initialize	System.cpp	/^void System::Initialize(unsigned num1,unsigned  num2)$/;"	f	class:System
-System	System.cpp	/^System::System(){}$/;"	f	class:System
-System	System.cpp	/^System::System(unsigned _rows)$/;"	f	class:System
-System	System.cpp	/^System::System(unsigned _rows,unsigned _columns)$/;"	f	class:System
+System	System.hpp	/^        System() {}$/;"	f	class:System
 System	System.hpp	/^class System {$/;"	c
 SystemColumns	System.hpp	/^	unsigned SystemColumns;$/;"	m	class:fileReader
 SystemColumns	System.hpp	/^	unsigned SystemColumns;$/;"	m	class:fileWriter
@@ -32,7 +30,7 @@ fout	System.hpp	/^	std::ofstream fout;$/;"	m	class:fileWriter
 generate_A	generator.cpp	/^void generate_A(const char* fn, int r, int c, unsigned counter) {$/;"	f
 generate_b	generator.cpp	/^void generate_b(const char* fn, int r) {$/;"	f
 getColumns	System.hpp	/^	unsigned getColumns() const  { return columns; }$/;"	f	class:System
-getColumnsValue	System.hpp	/^    unsigned getColumnsValue() { return SystemColumns; }$/;"	f	class:fileReader
+getColumnsValue	System.hpp	/^        unsigned getColumnsValue() { return SystemColumns; }$/;"	f	class:fileReader
 getRows	System.hpp	/^	unsigned getRows() const { return rows; }$/;"	f	class:System
 getRowsValue	System.hpp	/^	unsigned getRowsValue() { return SystemRows; }$/;"	f	class:fileReader
 getStr	System.cpp	/^void fileReader::getStr(std::string str) {$/;"	f	class:fileReader

@@ -81,8 +81,7 @@ fileWriter::fileWriter(const char* fn)
 
         fout.open(writerFile, std::ios::out);
 	assert(fout.is_open());
-	if(!(fout << "Result vector:\n"))
-	{
+	if(!(fout << "Result vector:\n")) {
                 exit(1);
         }
 }
@@ -162,7 +161,7 @@ bool readSystem(System& S, System& b, fileReader& fr) {
         S.Initialize(num1, num2);
 	for(int i = 0; i < S.getRows(); ++i) {
 		for(int j = 0; j < S.getColumns(); ++j) {
-			double n;
+                        double n;
 			if(fr.elemReading(n)) {
 				S(i,j) = n;
 			}
@@ -173,7 +172,7 @@ bool readSystem(System& S, System& b, fileReader& fr) {
 	}
         if(fr.symbolReading(ch) && fr.symbolReading(ch) && fr.numReading(num1) &&
 		 fr.symbolReading(ch) && fr.numReading(num2) && fr.symbolReading(ch)) {
-        b.Initialize(num1);
+	        b.Initialize(num1);
 		for(int i = 0; i < b.getRows(); ++i) {
 			double n;
 			if(fr.elemReading(n)) {
@@ -182,9 +181,7 @@ bool readSystem(System& S, System& b, fileReader& fr) {
 				return false;
 			}
 		}
-        }
-        else
-        {
+        }else {
                 return false;
         }
 	return true;
@@ -192,8 +189,7 @@ bool readSystem(System& S, System& b, fileReader& fr) {
 
 bool writeSystem (const System& b, fileWriter& fw) {
 	if (!fw.symbolWriting('#') || !fw.sysNumWriting(fw.getSystemCounter())
-			 || !fw.symbolWriting('\n'))
-	 {
+			 || !fw.symbolWriting('\n')) {
 		return false;
 	 }
 	for(int i = 0; i < b.getRows(); ++i) {

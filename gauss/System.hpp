@@ -1,10 +1,10 @@
 #ifndef system_class
 #define system_class
 
+#include <iostream>
 #include <vector>
 #include <cstring>
 #include <fstream>
-#include <iostream>
 
 class System {
 public:
@@ -26,7 +26,7 @@ private:
 	unsigned columns;
 	unsigned SystemNumber;
 	std::vector<double> b;
-	std::vector<std::vector<double> > A;
+	std::vector< std::vector<double> > A;
 };
 
 class fileReader {
