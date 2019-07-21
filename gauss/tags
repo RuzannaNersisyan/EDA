@@ -3,11 +3,9 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.8	//
-A	System.hpp	/^	std::vector<std::vector<double> > A;$/;"	m	class:System
-Initialize	System.cpp	/^void System::Initialize(unsigned num1)$/;"	f	class:System
-Initialize	System.cpp	/^void System::Initialize(unsigned num1,unsigned  num2)$/;"	f	class:System
-System	System.hpp	/^        System() {}$/;"	f	class:System
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+A	System.hpp	/^	double **A;$/;"	m	class:System
+Initialize	System.cpp	/^void System::Initialize(unsigned num1, unsigned  num2)$/;"	f	class:System
 System	System.hpp	/^class System {$/;"	c
 SystemColumns	System.hpp	/^	unsigned SystemColumns;$/;"	m	class:fileReader
 SystemColumns	System.hpp	/^	unsigned SystemColumns;$/;"	m	class:fileWriter
@@ -15,7 +13,6 @@ SystemCounter	System.hpp	/^	unsigned SystemCounter;$/;"	m	class:fileWriter
 SystemNumber	System.hpp	/^	unsigned SystemNumber;$/;"	m	class:System
 SystemRows	System.hpp	/^	unsigned SystemRows;$/;"	m	class:fileReader
 SystemRows	System.hpp	/^	unsigned SystemRows;$/;"	m	class:fileWriter
-b	System.hpp	/^	std::vector<double> b;$/;"	m	class:System
 backwordStep	gauss.cpp	/^void backwordStep(System& A, System& b) {$/;"	f
 check	gauss.cpp	/^bool check(System& A, System& b) {$/;"	f
 columns	System.hpp	/^	unsigned columns;$/;"	m	class:System
@@ -33,7 +30,6 @@ getColumns	System.hpp	/^	unsigned getColumns() const  { return columns; }$/;"	f	
 getColumnsValue	System.hpp	/^        unsigned getColumnsValue() { return SystemColumns; }$/;"	f	class:fileReader
 getRows	System.hpp	/^	unsigned getRows() const { return rows; }$/;"	f	class:System
 getRowsValue	System.hpp	/^	unsigned getRowsValue() { return SystemRows; }$/;"	f	class:fileReader
-getStr	System.cpp	/^void fileReader::getStr(std::string str) {$/;"	f	class:fileReader
 getSystemCounter	System.hpp	/^	unsigned getSystemCounter() { return SystemCounter; }$/;"	f	class:fileWriter
 getSystemNumber	System.hpp	/^	unsigned getSystemNumber() const { return SystemNumber; }$/;"	f	class:System
 main	gauss.cpp	/^int main() {$/;"	f
@@ -42,8 +38,6 @@ numReading	System.cpp	/^bool fileReader::numReading(unsigned& num) {$/;"	f	class
 numWriting	System.cpp	/^bool fileWriter::numWriting(double num) {$/;"	f	class:fileWriter
 operator ()	System.cpp	/^const double& System::operator() (unsigned i, unsigned j) const {$/;"	f	class:System
 operator ()	System.cpp	/^double& System::operator() (unsigned i, unsigned j) {$/;"	f	class:System
-operator []	System.cpp	/^const double& System::operator[] (unsigned i) const {$/;"	f	class:System
-operator []	System.cpp	/^double& System::operator[] (unsigned i) {$/;"	f	class:System
 readSystem	System.cpp	/^bool readSystem(System& S, System& b, fileReader& fr) {$/;"	f
 readerFile	System.hpp	/^	const char* readerFile;$/;"	m	class:fileReader
 rows	System.hpp	/^	unsigned rows;$/;"	m	class:System
@@ -57,7 +51,8 @@ symbolWriting	System.cpp	/^bool fileWriter::symbolWriting(char ch) {$/;"	f	class
 sysNumWriting	System.cpp	/^bool fileWriter::sysNumWriting(unsigned num) {$/;"	f	class:fileWriter
 systemCounter	System.cpp	/^void fileWriter::systemCounter() {$/;"	f	class:fileWriter
 system_class	System.hpp	2;"	d
-writeSystem	System.cpp	/^bool writeSystem (const System& b, fileWriter& fw) {$/;"	f
+writeSystem	System.cpp	/^bool writeSystem (System& b, fileWriter& fw) {$/;"	f
 writerFile	System.hpp	/^        const char * writerFile;$/;"	m	class:fileWriter
+~System	System.cpp	/^System::~System() {$/;"	f	class:System
 ~fileReader	System.cpp	/^fileReader::~fileReader(){$/;"	f	class:fileReader
 ~fileWriter	System.cpp	/^fileWriter::~fileWriter() {$/;"	f	class:fileWriter
