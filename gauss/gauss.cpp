@@ -25,6 +25,7 @@ int main() {
 		}else {
 			backwordStep(A, b);
 			writeSystem(b, fw);
+			fw.symbolWriting('\n');
 			if(count == 1) {
 				fw.stringWriting("Solution set for private case!");
 				fw.symbolWriting('\n');
@@ -40,8 +41,10 @@ void straightStep(System& A, System& b) {
 		double del;
 		int change = 0;
 		for(int l = i+1; l < A.getRows(); ++l){
-			for(int j = i; j < A.getColumns(); ++j) {
+			if(i < A.getColumns()) {
 				del = -(A(l, i)) / A(i, i);
+			}
+			for(int j = i; j < A.getColumns(); ++j) {
 				if(i == j && A(i,j) == 0) {
 					double bigger = 0;
 					if(A(i+1, j) != 0) {
@@ -60,50 +63,60 @@ void straightStep(System& A, System& b) {
 						A(i,j) = A(change,j);
 						A(change,j) = middle;
 					}
-					middle = b(i, 0);
-					b(i, 0) = b(change, 0);
-					b(change, 0) = middle;
+					middle = b(i);
+					b(i) = b(change);
+					b(change) = middle;
 				}
 				A(l,j) += A(i,j) * del;
 			}
-			b(l, 0) += b(i, 0) * del;
+			b(l) += b(i) * del;
 		}
 		if(i >= A.getColumns()) {
 			int k = A.getColumns() - 1;
 			double d = -(A(i, k)) / A(k, k);
 			A(i+1, k) += A(k, k) * d;
-			b(i+1, 0) += b(i, 0) * d;
+			b(i+1) += b(i) * d;
 		}
 	}
 }
 
 bool check(System& A, System& b) {
-	count = 0;
 	if(A.getRows() <= A.getColumns()) {
 		int i = A.getRows()-1;
 		if(A(i, i) != 0) {
-			count = 1;
 			return true;
 		}
-		else if(A(i, i) == 0 && b(i, 0) == 0) {
+		else if(A(i, i) == 0 && b(i) == 0) {
 			A.setRows(A.getRows()-1);
+			b.setRows(b.getRows()-1);
 			count = 1;
 			return true;
-		}else if(A(i, i) == 0 && b(i, 0) != 0){
+		}else if(A(i, i) == 0 && b(i) != 0){
 			return false;
 		}
 	}
 	if(A.getRows() > A.getColumns()) {
-		for(int i = A.getRows()-1; i >= A.getColumns()-1; --i) {
-			if(i == A.getColumns()-1) {
+		std::cout << "11" << std::endl;
+		for(unsigned i = (A.getRows()-1); i >= (A.getColumns()-1); --i) {
+			std::cout << A.getRows()-1 << " row" << std::endl;
+			std::cout << A.getColumns()-1 << " col" << std::endl;
+			if(i == (A.getColumns()-1)) {
+				std::cout << "11" << std::endl;
 				if(A(i, i) == 0) {
-					if(b(i, 0) == 0) { 
-						return true;
+					if(b(i) == 0) { 
 						A.setRows(i);
-					}else { return false; }
-				}else { return true; }
+						std::cout << "11" << std::endl;
+						return true;
+					}else { 
+						std::cout << "11" << std::endl;
+						return false; 
+					}
+				}else {
+					std::cout << "11" << std::endl;
+					return true; }
 			}
-			if(b(i, 0) != 0) {
+			if(b(i) != 0) {
+				std::cout << b(i) << " b" << std::endl;
 				return false;
 			}
 		}
@@ -114,12 +127,13 @@ bool check(System& A, System& b) {
 
 void backwordStep(System& A, System& b) {
 	int k = A.getRows()-1; 
+	b(k) = b(k) / A(k, k);
 	for(int i = k; i >= 0; --i) {
 		int j = i;
-		b(i, 0) = b(i, 0) / A(i, j);
 		for(int l = i-1; l >= 0; --l) {
-			A(l, j) *= b(i, 0);
-			b(l, 0) -= A(l, i);
+			A(l, j) *= b(i);
+			b(l) -= A(l, i);
 		}	
+		b(i) = b(i) / A(i, j);
 	}
 }

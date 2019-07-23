@@ -166,7 +166,7 @@ bool readSystem(System& S, System& b, fileReader& fr) {
 		for(int i = 0; i < b.getRows(); ++i) {
 			double n = 0;
 			if(fr.elemReading(n)) {
-				b(i, 0) = n;
+				b(i) = n;
 			}else {
 				return false;
 			}
@@ -183,7 +183,7 @@ bool writeSystem (System& b, fileWriter& fw) {
 		return false;
 	 }
 	for(int i = 0; i < b.getRows(); ++i) {
-		if(!fw.numWriting(b(i, 0)) || !fw.symbolWriting(' ')) {
+		if(!fw.numWriting(b(i)) || !fw.symbolWriting(' ')) {
 				return false;
 			}
 		}
