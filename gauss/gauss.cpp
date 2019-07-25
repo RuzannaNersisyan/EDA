@@ -47,29 +47,41 @@ void straightStep(System& A, System& b) {
 			for(int j = i; j < A.getColumns(); ++j) {
 				if(i == j && A(i,j) == 0) {
 					double bigger = 0;
+					std::cout << i+1 << " i+1 " << std::endl;
 					if(A(i+1, j) != 0) {
 						bigger = A(i+1, j);
+					//	std::cout << bigger << " bigger " << l << std::endl;
 						change = i+1;
 					}
 					for(unsigned k = i+2; k < A.getRows(); ++k) {
-						if(A(k,j) > bigger) {
-							bigger = A(k,j);
-							change = k;
+						if(A(k, j) != 0) {
+							if(A(k, j) > bigger) {
+								bigger = A(k, j);
+								change = k;
+							}else if(A(k, j) < bigger && bigger == 0) {
+								bigger = A(k,j);
+								std::cout << bigger << " bigger " << l << std::endl;
+								change = k;
+							}
 						}
 					}
-					double middle;
-					for(int j = 0; j < A.getColumns(); ++j) {
-						middle = A(i,j);
-						A(i,j) = A(change,j);
-						A(change,j) = middle;
+					if(bigger != 0) {
+						double middle;
+						for(int j = 0; j < A.getColumns(); ++j) {
+							middle = A(i,j);
+							A(i,j) = A(change,j);
+							A(change,j) = middle;
+						}
+						middle = b(i);
+						b(i) = b(change);
+						b(change) = middle;
 					}
-					middle = b(i);
-					b(i) = b(change);
-					b(change) = middle;
 				}
 				A(l,j) += A(i,j) * del;
+				std::cout << A(l, j) << " A " << l << std::endl;
 			}
 			b(l) += b(i) * del;
+			std::cout << b(l) << " b " << std::endl;
 		}
 		if(i >= A.getColumns()) {
 			int k = A.getColumns() - 1;
