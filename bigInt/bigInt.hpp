@@ -3,15 +3,16 @@
 
 #include <iostream>
 #include <string>
-
+#include <vector>
 
 class integer
 {
     public:
         integer() {}
-        integer(char*);
+        integer(std::string num);
         integer(const integer&);
-        ~integer() {} 
+	~integer() {}
+	void strToCharArray256(std::string);
 	void charArray256ToStr(const char*, char*);
 	integer pow256(integer&);
 /*	integer& operator=(const integer&);
@@ -51,13 +52,13 @@ class integer
         void mod(integer, integer, integer&);
         void pow(integer, integer, integer&);
         void negate(integer, integer&);
-	char* getNum() const { return allNum; }
+	std::string getNum() const { return allNum; }
+	friend std::ostream& operator<<(std::ostream&,const integer&);
+	friend std::istream& operator>>(std::istream&, integer&);
     private:
-        char* allNum;
-	char* num256;
+	std::string allNum;
+	std::vector<char> num256;
 };
 
-std::ostream& operator<<(std::ostream&, const integer&);
-std::istream& operator>>(std::istream&, integer&);
 	
 #endif

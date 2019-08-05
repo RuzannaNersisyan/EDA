@@ -6,7 +6,8 @@ bool check(System&, System&);
 
 unsigned count = 0;
 
-int main() {
+int main() 
+{
 	fileReader fr("systems.txt");
 	fileWriter fw("result.txt");
 
@@ -36,7 +37,8 @@ int main() {
 	return 0;
 }
 
-void straightStep(System& A, System& b) {
+void straightStep(System& A, System& b) 
+{
 	for(int i = 0; i < A.getRows()-1; ++i) {
 		double del;
 		int change = 0;
@@ -50,7 +52,7 @@ void straightStep(System& A, System& b) {
 					std::cout << i+1 << " i+1 " << std::endl;
 					if(A(i+1, j) != 0) {
 						bigger = A(i+1, j);
-					//	std::cout << bigger << " bigger " << l << std::endl;
+						//	std::cout << bigger << " bigger " << l << std::endl;
 						change = i+1;
 					}
 					for(unsigned k = i+2; k < A.getRows(); ++k) {
@@ -92,7 +94,8 @@ void straightStep(System& A, System& b) {
 	}
 }
 
-bool check(System& A, System& b) {
+bool check(System& A, System& b) 
+{
 	if(A.getRows() <= A.getColumns()) {
 		int i = A.getRows()-1;
 		if(A(i, i) != 0) {
@@ -137,7 +140,8 @@ bool check(System& A, System& b) {
 	return true;
 }
 
-void backwordStep(System& A, System& b) {
+void backwordStep(System& A, System& b) 
+{
 	int k = A.getRows()-1; 
 	b(k) = b(k) / A(k, k);
 	for(int i = k; i >= 0; --i) {

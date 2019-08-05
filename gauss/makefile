@@ -1,13 +1,13 @@
 .PHONY : clean
 
-start : gauss.exe
+start : gauss
 
-gauss.exe : gauss.cpp System.cpp
+gauss : gauss.cpp System.cpp
 	g++ $^ -g -o $@
 
-gen : generator.exe
+gen : generator
 
-generator.exe : generator.cpp
+generator : generator.cpp
 	g++ $< -o $@
 
 clean : 

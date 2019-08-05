@@ -1,9 +1,5 @@
-.PHONY : clean
+source = $(wildcard *.cpp)
+header = $(wildcard *.hpp)
 
-start : integer
-
-integer : main.cpp bigInt.cpp
-	g++ $^ -g -o $@
-
-clean : 
-	rm *.exe
+bigInt : $(source) $(header)
+	gcc -std=c++11 -g $(source) -o bigInt -lstdc++

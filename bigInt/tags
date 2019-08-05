@@ -4,11 +4,19 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-allNum	bigInt.hpp	/^        char* allNum;$/;"	m	class:integer
+allNum	bigInt.hpp	/^	std::string allNum;$/;"	m	class:integer
 big_integer	bigInt.hpp	2;"	d
-integer	bigInt.cpp	/^integer::integer(char* num)$/;"	f	class:integer
+getNum	bigInt.hpp	/^	std::string getNum() const { return allNum; }$/;"	f	class:integer
+header	Makefile	/^header = $(wildcard *.hpp)$/;"	m
+integer	bigInt.cpp	/^integer::integer(std::string num)$/;"	f	class:integer
+integer	bigInt.hpp	/^        integer() {}$/;"	f	class:integer
 integer	bigInt.hpp	/^class integer$/;"	c
+isNumber	bigInt.cpp	/^bool isNumber(const std::string& s) $/;"	f
 main	main.cpp	/^int main()$/;"	f
+nan	bigInt.cpp	/^void nan() {$/;"	f
 num256	bigInt.hpp	/^	char* num256;$/;"	m	class:integer
-operator <<	bigInt.cpp	/^std::ostream& integer::operator<<(const integer& i)$/;"	f	class:integer
-operator >>	bigInt.cpp	/^std::istream& integer::operator>>(integer& i) $/;"	f	class:integer
+operator <<	bigInt.cpp	/^std::ostream& operator <<(std::ostream& stream, const integer& i)$/;"	f
+operator >>	bigInt.cpp	/^std::istream& operator >>(std::istream& stream, integer& i) $/;"	f
+source	Makefile	/^source = $(wildcard *.cpp)$/;"	m
+strToCharArray256	bigInt.cpp	/^void integer::strToCharArray256(std::string num)$/;"	f	class:integer
+~integer	bigInt.hpp	/^	~integer() {}$/;"	f	class:integer
