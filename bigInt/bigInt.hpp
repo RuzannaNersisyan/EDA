@@ -13,8 +13,7 @@ class integer
         integer(const integer&);
 	~integer() {}
 	void strToCharArray256(std::string);
-	void charArray256ToStr(const char*, char*);
-	integer pow256(integer&);
+	void charArray256ToStr();
 /*	integer& operator=(const integer&);
         void operator+=(integer&, integer);
         integer operator+(integer, integer);
@@ -60,5 +59,5 @@ class integer
 	std::vector<char> num256;
 };
 
-	
+
 #endif

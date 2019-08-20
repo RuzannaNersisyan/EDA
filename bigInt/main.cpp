@@ -3,9 +3,7 @@
 
 int main()
 {
-	integer a("13548");
+	integer a("25183985");
 	std::cout << a;
-//	std::cin >> a;
-//	std::cout << a;
 	return 0;
 }
